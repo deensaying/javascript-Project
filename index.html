@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .modal-pop-container {
+            width: 100%;
+            height: 100vh;
+            background-color: aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-btn {
+            padding: 10px 60px;
+            background-color: #fff;
+            border: 0;
+            outline: none;
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .popup {
+            width: 400px;
+            background-color: blue;
+            border-radius: 6px;
+            position: absolute;
+            top:0;
+            left: 50%;
+            transform: translate(-50%,-50%)scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            visibility: hidden;
+            transition: transform 0.4s,top 0.4s;
+        }
+        .popups {
+            width: 400px;
+            background-color: blue;
+            border-radius: 6px;
+            position: absolute;
+            top:0;
+            left: 50%;
+            transform: translate(-50%,-50%)scale(0.1);
+            text-align: center;
+            padding: 0 30px 30px;
+            visibility: hidden;
+            transition: transform 0.4s,top 0.4s;
+        }
+        .open-popup{
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%,-50%)scale(1);
+        }
+        .open-popups{
+            visibility: visible;
+            top: 50%;
+            transform: translate(-50%,-50%)scale(1);
+        }
+
+        .popup .popup-button {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #ffff;
+            border: 0;
+            outline: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal-pop-container">
+        <button type="submit" class="modal-btn" onclick="openPopup()">Submit</button>
+        <div class="popup" id="popup">
+            <h1>Lorem, ipsum dolor.</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero recusandae voluptate eligendi debitis
+                <button class="popup-button" onclick="closePopup()">Close</button>
+            </p>
+        </div>
+
+        <button type="submit" class="modal-btn" onclick="modalsopen()">Submit</button>
+        <div class="popups" id="popdown">
+            <h1>Lorem, ipsum dolor.</h1>
+            <p>consectetur adipisicing elit. Vero recusandae voluptate eligendi debitis
+                <button class="popup-button" onclick="modalclose()">Close</button>
+            </p>
+        </div>
+    </div>
+    <script>
+        let popup = document.getElementById("popup");
+        var popdown = document.getElementById("popdown");
+        function openPopup(){
+            popup.classList.add("open-popup");
+        }
+        function closePopup(){
+            popup.classList.remove("open-popup");
+        }
+        function modalsopen(){
+            popup.classList.add("open-popups");
+        }
+        function modalclose(){
+            popup.classList.remove("open-popups");
+        }
+    </script>
+</body>
+
+</html>

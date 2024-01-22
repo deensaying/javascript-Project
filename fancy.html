@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPG to PNG Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        #previewImage {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 20px;
+        }
+
+        #downloadLink {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JPG to PNG Converter</h1>
+
+    <input type="file" id="fileInput" accept=".jpg, .jpeg" />
+    <label for="fileInput">
+        <button>Choose JPG File</button>
+    </label>
+
+    <div id="previewImage"></div>
+
+    <a id="downloadLink" download="converted_image.png">
+        <button>Download PNG</button>
+    </a>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const fileInput = event.target;
+            const previewImage = document.getElementById('previewImage');
+            const downloadLink = document.getElementById('downloadLink');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    img.onload = function () {
+                        previewImage.innerHTML = '';
+                        previewImage.appendChild(img);
+
+                        // Show download button
+                        downloadLink.style.display = 'block';
+                    };
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+
+        document.getElementById('downloadLink').addEventListener('click', function () {
+            const previewImage = document.getElementById('previewImage');
+            const canvas = document.createElement('canvas');
+            const img = new Image();
+
+            img.src = previewImage.firstChild.src;
+
+            img.onload = function () {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const context = canvas.getContext('2d');
+                context.drawImage(img, 0, 0);
+
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = canvas.toDataURL('image/png');
+            };
+        });
+    </script>
+</body>
+</html>
