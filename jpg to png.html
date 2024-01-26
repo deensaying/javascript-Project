@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JPG to PNG Converter</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 50px;
-    }
-
-    #imageInput {
-      display: none;
-    }
-
-    #previewImage {
-      max-width: 100%;
-      max-height: 300px;
-      margin: 20px 0;
-    }
-
-    #downloadButton {
-      display: none;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPG to PNG Converter</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body>
+  <nav class="bg-blue-500 p-4 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-2xl font-bold">JPG to PNG Converter</div>
+        <!-- Add your navigation links here -->
+        <ul class="flex space-x-4">
+            <li><a href="#" class="hover:text-gray-300">Home</a></li>
+            <li><a href="#" class="hover:text-gray-300">About</a></li>
+            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h1 class="text-2xl font-bold mb-4">JPG to PNG Converter</h1>
 
-  <h1>JPG to PNG Converter</h1>
+        <input type="file" accept="image/jpeg" id="jpgInput" class="mb-4">
 
-  <input type="file" id="imageInput" accept="image/jpeg" />
-  <br>
-  <button onclick="selectImage()">Select JPG Image</button>
-  
-  <br>
-  <img id="previewImage" alt="Preview" />
-  
-  <br>
-  <button id="downloadButton" onclick="downloadPNG()">Download PNG</button>
+        <button onclick="convertToPng()" class="bg-blue-500 text-white px-4 py-2 rounded-md">Convert to PNG</button>
 
-  <script>
-    function selectImage() {
-      const input = document.getElementById('imageInput');
-      const preview = document.getElementById('previewImage');
-      const downloadButton = document.getElementById('downloadButton');
+        <a id="downloadLink" download="converted_image.png" class="hidden"></a>
 
-      input.onchange = function () {
-        const file = input.files[0];
-        const reader = new FileReader();
+        <p id="errorMessage" class="text-red-500 mt-4"></p>
+    </div>
+  </div>
 
-        reader.onload = function (e) {
-          preview.src = e.target.result;
-          downloadButton.style.display = 'block';
-        };
+    <!-- Include Tailwind CSS JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
 
-        reader.readAsDataURL(file);
-      };
+    <script>
+        function convertToPng() {
+            const jpgInput = document.getElementById('jpgInput');
+            const downloadLink = document.getElementById('downloadLink');
+            const errorMessage = document.getElementById('errorMessage');
 
-      input.click();
-    }
+            if (jpgInput.files.length === 0) {
+                errorMessage.textContent = 'Please choose a JPG file.';
+                return;
+            }
 
-    function downloadPNG() {
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      const image = document.getElementById('previewImage');
+            const jpgFile = jpgInput.files[0];
+            const reader = new FileReader();
 
-      canvas.width = image.width;
-      canvas.height = image.height;
+            reader.onload = function (e) {
+                const img = new Image();
+                img.src = e.target.result;
 
-      context.drawImage(image, 0, 0, image.width, image.height);
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
 
-      const dataURL = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.href = dataURL;
-      link.download = 'converted_image.png';
-      link.click();
-    }
-  </script>
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
 
+                    const pngDataUrl = canvas.toDataURL('image/png');
+                    downloadLink.href = pngDataUrl;
+                    downloadLink.click();
+                    errorMessage.textContent = ''; // Clear error message
+                };
+
+                img.onerror = function () {
+                    errorMessage.textContent = 'Error loading the JPG file.';
+                };
+            };
+
+            reader.readAsDataURL(jpgFile);
+        }
+    </script>
+     <footer class="bg-gray-800 text-white p-4">
+      <div class="container mx-auto text-center">
+          <!-- Add your footer content here -->
+          &copy; 2024 JPG to PNG Converter. All rights reserved.
+      </div>
+  </footer>
 </body>
+
 </html>

@@ -3,7 +3,7 @@
 // for (i=1; i<=10;i++){
 //     console.log(i);
 // }
-// for (i=0; i<100;i++){
+// for (i=0; i<10;i++){
   
 //     console.log("Hello Huzaifa");
 // }
@@ -38,6 +38,13 @@
 // for (i=1;i<=5;i++){
 //     if(i==2){
 //         continue;
+//     }
+   
+//     console.log(i);
+// }
+// for (i=1;i<=10;i++){
+//     if(i==5){
+//         break;
 //     }
    
 //     console.log(i);
