@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/hadith.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+       /* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+ box-sizing: border-box;
+  }
+  .hadith-content-main header h1{
+    color:#161F6D;
+    font-size: 30px;
+  }
+
+  .decoration{
+    background-color: #00ABE1;
+    width: 100%;
+    height:40vh;
+
+  }
+
+
+  .hadith-content-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    background: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif; /* Use your preferred font */
+  }
+  
+  /* .Hadith-header{
+    margin-top: 20px;
+    display: flex;
+    align-self: center;
+    /* justify-content: center;
+  } */
+ .hadith-content-main .hadith-container {
+    width: 680px;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;  }
+  
+  header {
+    font-size: 34px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .hadith-content {
+    margin-top: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .textarea {
+    text-align: left;
+  }
+  
+  .textarea p {
+    font-size: 15px;
+  }
+  .textarea .hadis {
+    font-size: 18px;
+    color: #313131;
+  }
+  
+  .hadis {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .hadith-buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .Chapter-Name{
+    font-size: 15px;
+    color: #afafaf;
+   }
+  .feature{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  .Book-Name{
+    margin: 20px 0;
+  }
+  .feature ul{
+    display: flex;
+    list-style: none;
+  }
+  .feature ul li{
+    height: 50px;
+    width:50px;
+    margin: 0 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #00ABE1;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+  .feature ul li:hover{
+    background-color: #00ABE1;
+    color: white;
+  }
+  .feature i {
+    margin-right: 10px;
+  }
+  
+  .newb {
+    color: #eee;
+    border: 1px solid #afafaf;
+    background-color: #00ABE1;
+    padding: 10px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  
+  .newb:hover {
+    border: 1px solid #00ABE1;
+    background-color: #161F6D;
+    color: #fff;
+    transition-duration: 0.5s;
+  }
+  
+  /* CSS */
+  /* CSS */
+  /* .feature {
+    display: flex;
+    align-items: center; /* Align items vertically in the center 
+  } */
+  
+  .sound, .stop, .copy {
+    color: #00ABE1;
+    cursor: pointer;
+    margin-right: 10px; /* Add some space between the icons */
+  }
+  
+  .newb {
+    cursor: pointer;
+  }  
+  /* Responsive Design */
+  @media screen and (max-width:668px) {
+    
+    .hadith-content-main .hadith-container {
+      width: 90%;
+    }
+    .textarea p {
+        font-size: 18px;
+      }
+      .Book-Name{
+       font-size: 22px;
+      }
+      .Chapter-Name{
+       font-size: 15px;
+       color: #afafaf;
+      }
+     .get-random-hadith .hadith-list{
+        grid-template-columns: repeat(1,1fr);
+      }
+    }
+    .background-light{
+      background-color: #00ABE1;
+      height: 40vh;
+    }
+   .hadith-list{
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    
+    margin: 20px auto;
+   }
+   .hadith-box{
+    width: 90%;
+    margin: 30px auto;
+    padding-top: 10px;
+    box-shadow: 2px 2px 2px 2px #00ABE1 ;
+    gap: 20px;
+   }
+   .hadith-image{
+    margin:0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #00ABE1 , white);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.hadith-intro{
+  padding-top: 10px;
+}
+.hadith-image p{
+  padding: 15px;
+  color: #161F6D;
+}
+  .hadith-intro h3{
+    text-align: center;
+    
+  }
+  .hadith-list a{
+    text-decoration: none;
+    color: #00ABE1;
+  }
+  .hadith-box{
+    background-color: #fff;
+    margin: 20px 20px;
+  }
+    </style>
+</head>
+<body>
+        <!-- Main div -->
+  
+  <div class="hadith-content-main">
+    <div class="hadith-container">
+      <header>
+        <h1>Sahih Bhukhari</h1>
+      </header>
+      <div class="Hadith-header">
+        <span id="Book-Name" class="Book-Name"></span> <br>
+        <span id="Chapter-Name" class="Chapter-Name"></span>
+      
+    </div>
+      <span id="narrator" class="narrator"></span>
+     
+      <div class="hadith-content">
+        <div class="textarea">
+          
+          <p id="hadis" class="hadis">Click on the "New Hadith" button.</p>
+          
+        </div>
+        <span id="refno-text"></span>
+        <div class="hadith-buttons">
+          <div class="feature">
+            <ul>
+              <li class="sound"><i class='bx bx-volume-full'></i></li>
+              <li class="stop"><i class='bx bx-volume-mute'></i></li>
+              <li class="copy"><i class='bx bxs-copy'></i></li>
+            </ul>
+            <button id="newb" class="newb">New hadith</button>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
